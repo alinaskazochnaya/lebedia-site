@@ -35,3 +35,4 @@ next-env.d.ts
 *.log
 dev.log
 server.log
+.env*
