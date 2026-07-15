@@ -36,3 +36,10 @@ next-env.d.ts
 dev.log
 server.log
 .env*
+
+# Lebedia extras
+scripts/
+screenshot-*.png
+screenshot-*.webm
+*.log
+.env.local

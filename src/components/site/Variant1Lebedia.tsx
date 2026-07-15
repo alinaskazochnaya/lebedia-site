@@ -207,7 +207,7 @@ function RepertoireRow({ item, index, palette }: RepertoireRowProps) {
           )}
         </div>
         {item.description && (
-          <p className="text-sm leading-relaxed" style={{ color: palette.text, opacity: 0.7 }}>
+          <p className="text-sm leading-relaxed" style={{ textAlign: "justify", color: palette.text, opacity: 0.7 }}>
             {item.description}
           </p>
         )}
@@ -412,7 +412,7 @@ export default function Variant1Lebedia() {
             {ensemble.tagline}
           </div>
           <p
-            className="max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-10"
+            className="max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-10" style={{ textAlign: "justify" }}
             style={{
               color: palette.text,
               opacity: 0.85,
@@ -483,7 +483,7 @@ export default function Variant1Lebedia() {
             >
               Диалог эпох
             </h3>
-            <p className="leading-relaxed" style={{ color: palette.text }}>
+            <p className="leading-relaxed" style={{ textAlign: "justify", color: palette.text }}>
               {ensemble.description}
             </p>
           </Reveal>
@@ -500,7 +500,7 @@ export default function Variant1Lebedia() {
               >
                 Звучание и инструменты
               </h3>
-              <p className="leading-relaxed mb-8" style={{ color: palette.text }}>
+              <p className="leading-relaxed mb-8" style={{ textAlign: "justify", color: palette.text }}>
                 {ensemble.sound}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -540,7 +540,7 @@ export default function Variant1Lebedia() {
               </h3>
               <div className="space-y-5">
                 {ensemble.method.map((p, i) => (
-                  <p key={i} className="leading-relaxed" style={{ color: palette.text }}>
+                  <p key={i} className="leading-relaxed" style={{ textAlign: "justify", color: palette.text }}>
                     {p}
                   </p>
                 ))}
@@ -579,7 +579,7 @@ export default function Variant1Lebedia() {
               </div>
 
               <div className="grid md:grid-cols-[1fr_auto] gap-8 items-start">
-                <p className="leading-relaxed" style={{ color: palette.text }}>
+                <p className="leading-relaxed" style={{ textAlign: "justify", color: palette.text }}>
                   {ensemble.visualImage}
                 </p>
                 <div className="flex flex-col gap-3 md:min-w-[220px]">
@@ -691,7 +691,7 @@ export default function Variant1Lebedia() {
                 {leader.bio ? (
                   <div className="mb-5 space-y-4">
                     {leader.bio.split("\n\n").map((para, i) => (
-                      <p key={i} className="leading-relaxed" style={{ color: palette.text }}>
+                      <p key={i} className="leading-relaxed" style={{ textAlign: "justify", color: palette.text }}>
                         {para}
                       </p>
                     ))}
@@ -767,7 +767,7 @@ export default function Variant1Lebedia() {
                       {ach.title}
                     </h3>
                     {ach.description && (
-                      <p className="text-sm leading-relaxed" style={{ color: palette.text, opacity: 0.8 }}>
+                      <p className="text-sm leading-relaxed" style={{ textAlign: "justify", color: palette.text, opacity: 0.8 }}>
                         {ach.description}
                       </p>
                     )}
@@ -977,137 +977,78 @@ export default function Variant1Lebedia() {
         <div className="max-w-4xl mx-auto">
           <SectionTitle eyebrow="Связь" title="Контакты" />
 
-          <div className="grid md:grid-cols-2 gap-10">
-            <Reveal direction="right">
-              <div>
-                <p className="leading-relaxed mb-8" style={{ color: palette.text }}>
-                  {ensemble.signature}
-                </p>
+          <Reveal direction="up">
+            <p
+              className="max-w-2xl mx-auto text-center leading-relaxed mb-12" style={{ textAlign: "justify" }}
+              style={{ textAlign: "justify", color: palette.text }}
+            >
+              {ensemble.signature}
+            </p>
+          </Reveal>
 
-                <div className="space-y-4">
-                  <a
-                    href={`tel:${ensemble.contacts.phoneHref}`}
-                    className="flex items-center gap-4 group transition-transform duration-300 hover:translate-x-1"
-                  >
-                    <div
-                      className="w-11 h-11 flex items-center justify-center transition-all duration-300 group-hover:shadow-md"
-                      style={{ background: palette.mist, color: palette.accentDeep }}
-                    >
-                      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5">
-                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="text-xs uppercase tracking-wider" style={{ color: palette.accentDeep }}>
-                        Телефон руководителя
-                      </div>
-                      <div
-                        className="text-lg transition-colors duration-300 group-hover:text-[color:var(--accent-deep)]"
-                        style={{ fontFamily: "var(--font-cormorant)", color: palette.text }}
-                      >
-                        {ensemble.contacts.phone}
-                      </div>
-                    </div>
-                  </a>
-
-                  <a
-                    href={ensemble.contacts.vk}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 group transition-transform duration-300 hover:translate-x-1"
-                  >
-                    <div
-                      className="w-11 h-11 flex items-center justify-center transition-all duration-300 group-hover:shadow-md"
-                      style={{ background: palette.mist, color: palette.accentDeep }}
-                    >
-                      <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-                        <path d="M12.785 16.241s.288-.032.435-.193c.135-.148.131-.426.131-.426s-.018-1.302.576-1.495c.586-.19 1.338 1.262 2.132 1.811.602.415 1.059.324 1.059.324l2.131-.03s1.114-.069.586-.947c-.043-.071-.307-.648-1.579-1.834-1.331-1.24-1.153-1.039.45-3.185.976-1.306 1.367-2.105 1.245-2.443-.117-.323-.842-.237-.842-.237l-2.402.015s-.178-.024-.31.055c-.13.077-.213.257-.213.257s-.378 1.005-.882 1.86c-1.063 1.806-1.488 1.901-1.662 1.789-.404-.262-.303-1.05-.303-1.61 0-1.75.265-2.482-.516-2.673-.26-.063-.452-.104-1.116-.111-.852-.009-1.573.003-1.981.205-.272.134-.481.433-.354.45.158.021.515.097.704.357.244.334.236 1.084.236 1.084s.14 2.068-.327 2.325c-.32.176-.76-.183-1.712-1.836-.485-.842-.852-1.772-.852-1.772s-.07-.174-.198-.267c-.155-.114-.371-.15-.371-.15l-2.282.015s-.343.01-.469.158c-.112.132-.009.405-.009.405s1.786 4.179 3.808 6.286c1.854 1.932 3.961 1.805 3.961 1.805h.954z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="text-xs uppercase tracking-wider" style={{ color: palette.accentDeep }}>
-                        Группа ВКонтакте
-                      </div>
-                      <div
-                        className="text-lg"
-                        style={{ fontFamily: "var(--font-cormorant)", color: palette.text }}
-                      >
-                        {ensemble.contacts.vkLabel}
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Форма обратной связи */}
-            <Reveal direction="left" delay={0.15}>
-              <form
-                className="p-6 space-y-4 transition-all duration-300 hover:shadow-lg"
-                style={{ background: palette.card, border: `1px solid ${palette.accent}44` }}
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  alert("Спасибо за обращение! Мы свяжемся с вами в ближайшее время.");
+          <Reveal direction="up" delay={0.15}>
+            <div className="max-w-xl mx-auto space-y-4">
+              <a
+                href={`tel:${ensemble.contacts.phoneHref}`}
+                className="flex items-center gap-4 p-5 transition-all duration-300 hover:shadow-md group"
+                style={{
+                  background: palette.card,
+                  border: `1px solid ${palette.accent}33`,
                 }}
               >
-                <div>
-                  <label className="text-xs uppercase tracking-wider block mb-2" style={{ color: palette.accentDeep }}>
-                    Ваше имя
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    className="w-full px-3 py-2 outline-none transition-all duration-300 focus:shadow-sm"
-                    style={{
-                      background: palette.bg,
-                      border: `1px solid ${palette.accent}55`,
-                      color: palette.text,
-                    }}
-                  />
-                </div>
-                <div>
-                  <label className="text-xs uppercase tracking-wider block mb-2" style={{ color: palette.accentDeep }}>
-                    Телефон или e-mail
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    className="w-full px-3 py-2 outline-none transition-all duration-300 focus:shadow-sm"
-                    style={{
-                      background: palette.bg,
-                      border: `1px solid ${palette.accent}55`,
-                      color: palette.text,
-                    }}
-                  />
-                </div>
-                <div>
-                  <label className="text-xs uppercase tracking-wider block mb-2" style={{ color: palette.accentDeep }}>
-                    Сообщение
-                  </label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-3 py-2 outline-none resize-none transition-all duration-300 focus:shadow-sm"
-                    style={{
-                      background: palette.bg,
-                      border: `1px solid ${palette.accent}55`,
-                      color: palette.text,
-                    }}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-3 text-sm transition-all duration-300 hover:opacity-90 hover:shadow-md cursor-pointer"
-                  style={{
-                    background: palette.accentDeep,
-                    color: "#fff",
-                    letterSpacing: "0.1em",
-                  }}
+                <div
+                  className="w-12 h-12 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:shadow-sm"
+                  style={{ background: palette.mist, color: palette.accentDeep }}
                 >
-                  ОТПРАВИТЬ
-                </button>
-              </form>
-            </Reveal>
-          </div>
+                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-xs uppercase tracking-wider" style={{ color: palette.accentDeep }}>
+                    Телефон руководителя
+                  </div>
+                  <div
+                    className="text-lg"
+                    style={{ fontFamily: "var(--font-cormorant)", color: palette.text }}
+                  >
+                    {ensemble.contacts.phone}
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href={ensemble.contacts.vk}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-5 transition-all duration-300 hover:shadow-md group"
+                style={{
+                  background: palette.card,
+                  border: `1px solid ${palette.accent}33`,
+                }}
+              >
+                <div
+                  className="w-12 h-12 flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:shadow-sm"
+                  style={{ background: palette.mist, color: palette.accentDeep }}
+                >
+                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
+                    <path d="M12.785 16.241s.288-.032.435-.193c.135-.148.131-.426.131-.426s-.018-1.302.576-1.495c.586-.19 1.338 1.262 2.132 1.811.602.415 1.059.324 1.059.324l2.131-.03s1.114-.069.586-.947c-.043-.071-.307-.648-1.579-1.834-1.331-1.24-1.153-1.039.45-3.185.976-1.306 1.367-2.105 1.245-2.443-.117-.323-.842-.237-.842-.237l-2.402.015s-.178-.024-.31.055c-.13.077-.213.257-.213.257s-.378 1.005-.882 1.86c-1.063 1.806-1.488 1.901-1.662 1.789-.404-.262-.303-1.05-.303-1.61 0-1.75.265-2.482-.516-2.673-.26-.063-.452-.104-1.116-.111-.852-.009-1.573.003-1.981.205-.272.134-.481.433-.354.45.158.021.515.097.704.357.244.334.236 1.084.236 1.084s.14 2.068-.327 2.325c-.32.176-.76-.183-1.712-1.836-.485-.842-.852-1.772-.852-1.772s-.07-.174-.198-.267c-.155-.114-.371-.15-.371-.15l-2.282.015s-.343.01-.469.158c-.112.132-.009.405-.009.405s1.786 4.179 3.808 6.286c1.854 1.932 3.961 1.805 3.961 1.805h.954z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-xs uppercase tracking-wider" style={{ color: palette.accentDeep }}>
+                    Группа ВКонтакте
+                  </div>
+                  <div
+                    className="text-lg"
+                    style={{ fontFamily: "var(--font-cormorant)", color: palette.text }}
+                  >
+                    {ensemble.contacts.vkLabel}
+                  </div>
+                </div>
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
