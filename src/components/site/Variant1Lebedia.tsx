@@ -144,7 +144,7 @@ type RepertoireRowProps = {
 function RepertoireRow({ item, index, palette }: RepertoireRowProps) {
   return (
     <div
-      className="group relative grid grid-cols-[40px_1fr_auto] md:grid-cols-[50px_1fr_auto] gap-3 md:gap-8 items-baseline py-5 md:py-6 transition-all duration-300 hover:bg-white cursor-default px-5 md:px-8"
+      className="group relative block md:grid md:grid-cols-[50px_1fr_auto] md:gap-8 md:items-baseline py-5 md:py-6 transition-all duration-300 hover:bg-white cursor-default px-5 md:px-8"
       style={{
         borderTop: `1px solid ${palette.accent}33`,
         animation: `fade-up 0.6s ease-out ${index * 0.06}s both`,
@@ -155,16 +155,29 @@ function RepertoireRow({ item, index, palette }: RepertoireRowProps) {
         className="absolute left-0 top-0 bottom-0 w-[3px] transition-all duration-300 opacity-0 group-hover:opacity-100"
         style={{ background: palette.gold, transform: "scaleY(0.6)", transformOrigin: "center" }}
       />
-      <div
-        className="text-sm italic transition-colors duration-300"
-        style={{ color: palette.accentDeep, fontFamily: "var(--font-cormorant)" }}
-      >
-        {String(item.id).padStart(2, "0")}
-      </div>
-      <div className="min-w-0">
-        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0 mb-1">
+
+      {/* ─── Mobile layout (вертикальный) ─── */}
+      <div className="md:hidden">
+        {/* Строка 1: номер + тип (тип отдельной строкой, не налазит) */}
+        <div className="flex items-baseline gap-3 mb-2">
+          <span
+            className="text-sm italic flex-shrink-0"
+            style={{ color: palette.accentDeep, fontFamily: "var(--font-cormorant)" }}
+          >
+            {String(item.id).padStart(2, "0")}
+          </span>
+          <span
+            className="text-[10px] uppercase tracking-[0.15em] leading-snug"
+            style={{ color: palette.accentDeep, fontFamily: "var(--font-inter)", fontWeight: 500 }}
+          >
+            {item.type}
+          </span>
+        </div>
+
+        {/* Строка 2: название + автор + видео-кнопка */}
+        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-1">
           <h3
-            className="text-xl md:text-3xl transition-all duration-300 group-hover:translate-x-1"
+            className="text-xl transition-all duration-300 group-hover:translate-x-1"
             style={{
               fontFamily: "var(--font-cormorant)",
               color: palette.text,
@@ -175,13 +188,75 @@ function RepertoireRow({ item, index, palette }: RepertoireRowProps) {
           </h3>
           {item.author && (
             <span
-              className="text-xs md:text-sm italic opacity-60"
+              className="text-xs italic opacity-60"
               style={{ color: palette.accentDeep, fontFamily: "var(--font-cormorant)" }}
             >
               — {item.author}
             </span>
           )}
-          {/* Видео-кнопка — появляется только если есть ссылка */}
+          {item.video && (
+            <a
+              href={item.video}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-1 text-[10px] uppercase tracking-wider px-2 py-0.5 transition-all duration-300 hover:scale-105 cursor-pointer"
+              style={{
+                background: palette.accentDeep,
+                color: "#fff",
+                fontFamily: "var(--font-inter)",
+                fontWeight: 500,
+                letterSpacing: "0.08em",
+              }}
+              aria-label={`Смотреть видео: ${item.title}`}
+              title="Смотреть видео"
+            >
+              <svg viewBox="0 0 24 24" className="w-2.5 h-2.5" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              <span>Видео</span>
+            </a>
+          )}
+        </div>
+
+        {/* Строка 3: описание (если есть) */}
+        {item.description && (
+          <p
+            className="text-sm leading-relaxed"
+            style={{ textAlign: "justify", color: palette.text, opacity: 0.7 }}
+          >
+            {item.description}
+          </p>
+        )}
+      </div>
+
+      {/* ─── Desktop layout (3 колонки) ─── */}
+      <div
+        className="hidden md:block text-sm italic transition-colors duration-300"
+        style={{ color: palette.accentDeep, fontFamily: "var(--font-cormorant)" }}
+      >
+        {String(item.id).padStart(2, "0")}
+      </div>
+      <div className="hidden md:block min-w-0">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+          <h3
+            className="text-3xl transition-all duration-300 group-hover:translate-x-1"
+            style={{
+              fontFamily: "var(--font-cormorant)",
+              color: palette.text,
+              fontWeight: 400,
+            }}
+          >
+            {item.title}
+          </h3>
+          {item.author && (
+            <span
+              className="text-sm italic opacity-60"
+              style={{ color: palette.accentDeep, fontFamily: "var(--font-cormorant)" }}
+            >
+              — {item.author}
+            </span>
+          )}
           {item.video && (
             <a
               href={item.video}
@@ -207,13 +282,16 @@ function RepertoireRow({ item, index, palette }: RepertoireRowProps) {
           )}
         </div>
         {item.description && (
-          <p className="text-sm leading-relaxed" style={{ textAlign: "justify", color: palette.text, opacity: 0.7 }}>
+          <p
+            className="text-sm leading-relaxed"
+            style={{ textAlign: "justify", color: palette.text, opacity: 0.7 }}
+          >
             {item.description}
           </p>
         )}
       </div>
       <div
-        className="text-xs uppercase tracking-[0.2em] text-right"
+        className="hidden md:block text-xs uppercase tracking-[0.2em] text-right"
         style={{ color: palette.accentDeep, fontFamily: "var(--font-inter)", fontWeight: 500 }}
       >
         {item.type}
